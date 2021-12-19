@@ -59,8 +59,13 @@ newspapers.forEach(newspaper => {
         }).catch(err => console.log(err))
 })
 
-function removeDuplicateObjectFromArrayOfObject(arrObj) {
-    return [...new Set(arrObj.map(obj => JSON.stringify(obj)))].map(data => JSON.parse(data))
+function removeDuplicateObjFromArrObj(arrObj) {
+    let arrStr = arrObj.map(obj => JSON.stringify(obj))
+    let arrSetStr = Array.from(new Set(arrStr))     // OR [...new Set(arrStr)]
+    let arrSetObj = arrSetStr.map(data => JSON.parse(data))
+    return arrSetObj;
+    // return Array.from(new Set(arrObj.map(obj => JSON.stringify(obj)))).map(data => JSON.parse(data));
+    // return [...new Set(listObj.map(obj => JSON.stringify(obj)))].map(data => JSON.parse(data));
 }
 
 app.get('/', (req, res) => {
@@ -69,7 +74,7 @@ app.get('/', (req, res) => {
 
 app.get('/news', (req, res) => {
     // To remove duplicate object from an array-of-object
-    let articlesData = removeDuplicateObjectFromArrayOfObject(articles)
+    let articlesData = removeDuplicateObjFromArrObj(articles)
     res.json(articlesData)
 })
 

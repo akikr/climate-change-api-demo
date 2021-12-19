@@ -1,8 +1,9 @@
 const express = require('express')
 const axios = require('axios')
 const cheerio = require('cheerio')
+require('dotenv').config({ path: '.env' })
 
-const PORT = 9080
+const PORT = process.env.PORT || 9000
 const app = express()
 
 const newspapers = [

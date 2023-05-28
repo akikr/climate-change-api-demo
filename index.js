@@ -69,8 +69,16 @@ function removeDuplicateObjFromArrObj(arrObj) {
     // return [...new Set(listObj.map(obj => JSON.stringify(obj)))].map(data => JSON.parse(data));
 }
 
+const message = {
+    "message": "Welcome to Climate Change News API",
+    "metadata": {
+        "info": "News Article links",
+        "_href": "/news"
+    }
+}
+
 app.get('/', (req, res) => {
-    res.json('Welcome to Climate Change News API')
+    res.json(message)
 })
 
 app.get('/news', (req, res) => {
